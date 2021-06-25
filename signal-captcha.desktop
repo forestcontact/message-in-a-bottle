@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Signal
+Exec=/opt/save_signal_captcha %U
+Terminal=false
+Type=Application
+Icon=signal-desktop
+StartupWMClass=Signal
+Comment=save the signal captcha
+MimeType=x-scheme-handler/signalcaptcha;
