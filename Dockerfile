@@ -1,4 +1,23 @@
+FROM ghcr.io/graalvm/graalvm-ce:latest as sigbuilder
+ENV GRAALVM_HOME=/opt/graalvm-ce-java11-21.1.0/ 
+SHELL ["/usr/bin/bash", "-c"]
+WORKDIR /app
+RUN microdnf install -y git zlib-devel && rm -rf /var/cache/yum
+RUN gu install native-image
+RUN git clone https://github.com/forestcontact/signal-cli
+WORKDIR /app/signal-cli
+RUN git pull origin  forest-fork-v5  #b2f2b16#forest-fork-v6  #stdio-generalized 
+RUN ./gradlew build && ./gradlew installDist
+RUN md5sum ./build/libs/* 
+RUN ./gradlew assembleNativeImage
+
+
+
+
 FROM ubuntu:latest
+COPY --from=sigbuilder /app/signal-cli/build/native-image/signal-cli /
+# for signal-cli's unpacking of native deps
+COPY --from=sigbuilder /lib64/libz.so.1 /lib64
 ENV DEBIAN_FRONTEND "noninteractive" 
 RUN ln --symbolic --force --no-dereference /usr/share/zoneinfo/EST /etc/localtime && \
 	echo "EST" > /etc/timezone && apt-get update && \
@@ -12,4 +31,5 @@ RUN curl https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor |  tee 
     apt update && apt install -yy signal-desktop
 
 COPY ./getqr.sh ./
-
+COPY --from=sigbuilder /app/signal-cli/build/native-image/signal-cli /signal-cli
+RUN ls /
