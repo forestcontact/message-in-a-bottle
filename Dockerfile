@@ -33,3 +33,6 @@ RUN curl https://updates.signal.org/desktop/apt/keys.asc | gpg --dearmor |  tee 
 COPY ./getqr.sh ./
 COPY --from=sigbuilder /app/signal-cli/build/native-image/signal-cli /signal-cli
 RUN ls /
+WORKDIR /
+COPY --from=sigbuilder /app/signal-cli/build/native-image/signal-cli ./
+RUN ls 

@@ -1,2 +1,2 @@
 #!/usr/bin/bash
-echo $@ > /tmp/captcha
+echo $@ | cut -c (echo "signalcaptcha://"|wc -c)- > /tmp/captcha
