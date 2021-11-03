@@ -1,5 +1,5 @@
 FROM ghcr.io/graalvm/graalvm-ce:latest as sigbuilder
-ENV GRAALVM_HOME=/opt/graalvm-ce-java11-21.1.0/ 
+ENV GRAALVM_HOME=/opt/graalvm-ce-java11-21.2.0/ 
 SHELL ["/usr/bin/bash", "-c"]
 WORKDIR /app
 RUN microdnf install -y git zlib-devel && rm -rf /var/cache/yum
@@ -10,8 +10,6 @@ RUN git pull origin  forest-fork-v5  #b2f2b16#forest-fork-v6  #stdio-generalized
 RUN ./gradlew build && ./gradlew installDist
 RUN md5sum ./build/libs/* 
 RUN ./gradlew assembleNativeImage
-
-
 
 
 FROM ubuntu:latest

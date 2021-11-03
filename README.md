@@ -1,6 +1,6 @@
 ```
 # install stuff  to handle the signalcaptcha:// uri redirect
-cp signal-captcha.desktop /usr/share/applications
+cp signalcaptcha.desktop /usr/share/applications
 cp save_signal_captcha /opt
 echo "x-scheme-handler/signalcaptcha=signalcaptcha.desktop;" >> /usr/share/applications/mimeinfo.cache
 
