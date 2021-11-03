@@ -2,7 +2,7 @@
 signal-desktop --no-sandbox &
 pid=$!
 sleep 1
-until "${window_id-}"; do
+until [ "${window_id-}"; do ]
     echo "waiting for window..."
     sleep 1
     window_id=$(wmctrl -lp | awk -v proc=$pid '{if ($3 == proc) print $1}')
