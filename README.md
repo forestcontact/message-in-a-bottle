@@ -1,3 +1,6 @@
+Themes: running Signal Desktop without a phone on linux using X11-adjacent tretchery and signal-cli with improved semantics for solving captchas and getting QR codes
+
+The general dance goes something like this:
 ```
 # install stuff  to handle the signalcaptcha:// uri redirect
 cp signalcaptcha.desktop /usr/share/applications
@@ -28,5 +31,10 @@ signal-cli -u $number verify {code that was texted to your number}
 signal-cli -u $number addDevice --uri $(./getqr.sh)
 ```
 
+To run desktop in docker with getqr.sh (but signal-cli outside), use run.sh. Pick a name for the saved image, and use `docker commit $(docker ps --latest --quiet) secondsignal:latest`, replacing "secondsignal" with the name you want to use for this account, to freeze it when you're done, so that you can keep your session state and keys
 
-to run in docker instead, use run.sh. pick a name for the saved image, and use `docker commit $(docker ps --latest --quiet) secondsignal:latest` to freeze it when you're done, so that you can keep your session state and keys
+If you just want to run desktop in docker but don't care about signal, try only-desktop.Dockerfile. 
+
+If you don't care about docker and want desktop without a phone, try using the script above. 
+
+Stay tuned for getting verification codes automatically and additional ways to package primary signal devices (desktop in chroots, automated compiling of .apks with different IDs, shelter(?))

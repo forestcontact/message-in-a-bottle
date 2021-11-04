@@ -9,6 +9,7 @@ WORKDIR /app/signal-cli
 RUN git pull origin  forest-fork-v5  #b2f2b16#forest-fork-v6  #stdio-generalized 
 RUN ./gradlew build && ./gradlew installDist
 RUN md5sum ./build/libs/* 
+# todo: just download https://github.com/forestcontact/signal-cli/releases/download/forest-fork-v1.1.2-payments/signal-cli
 RUN ./gradlew assembleNativeImage
 
 
