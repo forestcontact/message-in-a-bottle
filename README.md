@@ -29,4 +29,4 @@ signal-cli -u $number verify {code that was texted to your number}
 signal-cli -u $number addDevice --uri $(./getqr.sh)
 ```
 
-to run in docker instead, use run.sh. pick a name for the saved image, and use `docker commit $(docker ps --latest --quiet)` to freeze it when you're done, so that you can keep your session state and keys
+to run in docker instead, use run.sh. pick a name for the saved image, and use `docker commit -t secondsignal:latest  $(docker ps --latest --quiet)` to freeze it when you're done, so that you can keep your session state and keys
