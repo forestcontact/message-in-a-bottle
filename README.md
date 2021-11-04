@@ -5,11 +5,10 @@ cp save_signal_captcha /opt
 echo "x-scheme-handler/signalcaptcha=signalcaptcha.desktop;" >> /usr/share/applications/mimeinfo.cache
 
 # grab signal-cli to be the main device (you can also use an existing signal-cli, but graalvm native doesn't seem to work with updateProfile, which is required to join v2 groups)
-export VERSION=0.8.4
+export VERSION=0.8.4.1
 wget https://github.com/AsamK/signal-cli/releases/download/v"${VERSION}"/signal-cli-"${VERSION}".tar.gz
 sudo tar xf signal-cli-"${VERSION}".tar.gz -C /opt
 sudo ln -sf /opt/signal-cli-"${VERSION}"/bin/signal-cli /usr/local/bin/
-
 
 # grab signal-desktop if you haven't already
 # 1. Install our official public software signing key
@@ -29,4 +28,5 @@ signal-cli -u $number verify {code that was texted to your number}
 signal-cli -u $number addDevice --uri $(./getqr.sh)
 ```
 
-to run in docker instead, use run.sh. pick a name for the saved image, and use `docker commit $(docker ps --latest --quiet)` to freeze it when you're done, so that you can keep your session state and keys
+
+to run in docker instead, use run.sh. pick a name for the saved image, and use `docker commit $(docker ps --latest --quiet) secondsignal:latest` to freeze it when you're done, so that you can keep your session state and keys
