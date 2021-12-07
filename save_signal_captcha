@@ -1,2 +1,4 @@
-#!/usr/bin/bash
-echo $@ | cut -c (echo "signalcaptcha://"|wc -c)- > /tmp/captcha
+#!/bin/sh
+# $ printf "signalcaptcha://" | wc -c
+# 16
+echo "$*" | cut -c 17- > /tmp/captcha
