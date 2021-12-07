@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 docker build -t secondsignal .
 xhost +local:docker
 sudo docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" -it secondsignal ./getqr.sh
