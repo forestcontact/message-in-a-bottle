@@ -8,7 +8,7 @@ cp save_signal_captcha /opt
 update-desktop-database
 
 # grab signal-cli to be the main device (you can also use an existing signal-cli, but graalvm native doesn't seem to work with updateProfile, which is required to join v2 groups)
-VERSION=0.8.4.1
+VERSION=0.10.0
 wget https://github.com/AsamK/signal-cli/releases/download/v"${VERSION}"/signal-cli-"${VERSION}".tar.gz | tar -xzf- -C /opt
 ln -sf /opt/signal-cli-"${VERSION}"/bin/signal-cli /usr/local/bin/
 

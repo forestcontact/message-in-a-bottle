@@ -4,7 +4,7 @@ pid=$! # $! is the pid of the last run process
 sleep 2
 
 # wmctrl -lp is a table of window_id, desktop number, pid, user, window title
-while window_id=$(wmctrl -lp | awk -v proc="$pid" '{if ($3 == proc) {print $1; exit 1}'); do
+while window_id=$(wmctrl -lp | awk -v proc="$pid" '{if ($3 == proc) {print $1; exit 1}}'); do
     echo "waiting for window..."
     sleep 1
 done
