@@ -11,5 +11,5 @@ done
 
 sleep 1 # wait for the qr code to show up
 # dump X window by id, extract the qr code and remove the leading 'QR-Code:'
-xwd -id "$window_id" | tee qr.xwd | zbarimg -q xwd:- | tee zbar_output | cut -d: -f2- | tee signal_uri
-sleep 1d # sleep for a day
+xwd -id "$window_id" | tee qr.xwd | zbarimg --quiet xwd:- | tee zbar_output | cut --delimiter ':' --fields 2- | tee signal_uri
+sleep 1d # sleep for a day so signal-desktop doesn't get killed
