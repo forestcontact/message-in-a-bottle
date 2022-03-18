@@ -22,6 +22,8 @@ apt-get update && apt-get install -yy signal-desktop
 
 # solve the captcha
 xdg-open https://signalcaptchas.org/registration/generate.html
+# if the protocol handler didn't work, manually copy the data and reformat it
+# /opt/save_signal_captcha signalcaptcha://signal-recaptcha..."
 
 # the rest of the owl
 number={your phone number}
