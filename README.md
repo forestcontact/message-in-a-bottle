@@ -27,7 +27,9 @@ xdg-open https://signalcaptchas.org/registration/generate.html
 number={your phone number}
 signal-cli -u $number register --captcha $(cat /tmp/captcha)
 signal-cli -u $number verify {code that was texted to your number}
-signal-cli -u $number addDevice --uri $(./getqr.sh)
+./getqr.sh &
+sleep 5s
+signal-cli -u $number addDevice --uri $(cat signal_uri)
 ```
 
 If you don't care about docker and want desktop without a phone, try using the script above. Note that the captcha redirect will be overwritten whenever you update desktop.
